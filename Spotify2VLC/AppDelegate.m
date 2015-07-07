@@ -13,7 +13,9 @@
 @property (weak) IBOutlet NSWindow *window;
 @end
 
-@implementation AppDelegate
+@implementation AppDelegate {
+  NSDate *startTime;
+}
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
   [self startVLC];
@@ -24,6 +26,8 @@
 }
 
 - (void)updateTrackInfoFromSpotify:(NSNotification *)notification {
+  startTime = [NSDate date];
+  
   NSString *playerState = [notification.userInfo valueForKey:@"Player State"];
   NSString *artist = [notification.userInfo valueForKey:@"Artist"];
   NSString *name = [notification.userInfo valueForKey:@"Name"];
@@ -35,7 +39,7 @@
     if ([position intValue] == 0) {
       songDetails = [songDetails stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLHostAllowedCharacterSet]];
       [self playURLinVLC: songDetails];
-      [self performSelector:@selector(VLCforward) withObject:self afterDelay:3.0];
+      [self performSelector:@selector(VLCforward) withObject:self afterDelay:4.0];
     } else {
       [self playVLC];
     }
@@ -91,7 +95,9 @@
 }
 
 - (void)VLCforward {
-  NSString * st = @"tell application \"VLC\" to set current time to current time + 2";
+  NSTimeInterval diff = [startTime timeIntervalSinceNow] * -1;
+  
+  NSString * st = [NSString stringWithFormat:@"tell application \"VLC\" to set current time to %f", diff];
   NSAppleScript *script = [[NSAppleScript alloc] initWithSource:st];
   [script executeAndReturnError:nil];
 }
