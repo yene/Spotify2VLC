@@ -29,7 +29,7 @@
   NSString *name = [notification.userInfo valueForKey:@"Name"];
   NSNumber *position = [notification.userInfo valueForKey:@"Playback Position"];
   NSString *songDetails = [NSString stringWithFormat:@"%@ %@", name, artist];
-  
+  NSLog(@"search string: %@", songDetails);
   if ([playerState isEqualToString:@"Playing"])  {
     // a new track starts
     if ([position intValue] == 0) {
@@ -64,6 +64,8 @@
                    "fullscreen \n"
                    "end if \n"
                    "set audio volume to 0 \n"
+                   "delay 3 \n"
+                   "set current time to current time + 3 \n"
                    "end tell", query];
   NSAppleScript *script = [[NSAppleScript alloc] initWithSource:st];
   [script executeAndReturnError:nil];
@@ -81,7 +83,9 @@
 
 - (void)playVLC {
   NSString * st = @"tell application \"VLC\" \n"
+  "if duration of current item is not equal to -1 then \n"
   "play \n"
+  "end if \n"
   "end tell";
   NSAppleScript *script = [[NSAppleScript alloc] initWithSource:st];
   [script executeAndReturnError:nil];
