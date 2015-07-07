@@ -35,6 +35,7 @@
     if ([position intValue] == 0) {
       songDetails = [songDetails stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLHostAllowedCharacterSet]];
       [self playURLinVLC: songDetails];
+      [self performSelector:@selector(VLCforward) withObject:self afterDelay:3.0];
     } else {
       [self playVLC];
     }
@@ -64,8 +65,6 @@
                    "fullscreen \n"
                    "end if \n"
                    "set audio volume to 0 \n"
-                   "delay 3 \n"
-                   "set current time to current time + 3 \n"
                    "end tell", query];
   NSAppleScript *script = [[NSAppleScript alloc] initWithSource:st];
   [script executeAndReturnError:nil];

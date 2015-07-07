@@ -670,7 +670,7 @@
         <window title="Spotify2VLC" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" id="QvC-M9-y7g">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="335" y="390" width="700" height="700"/>
+            <rect key="contentRect" x="444" y="180" width="700" height="700"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
             <value key="minSize" type="size" width="700" height="700"/>
             <value key="maxSize" type="size" width="700" height="700"/>
@@ -686,7 +686,7 @@
                 </subviews>
                 <animations/>
             </view>
-            <point key="canvasLocation" x="573" y="477"/>
+            <point key="canvasLocation" x="468" y="540"/>
         </window>
     </objects>
     <resources>
